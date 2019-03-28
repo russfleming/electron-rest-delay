@@ -18,6 +18,10 @@
       // You can also require other files to run in this process
       require('./renderer.js')
 
+
+
+      // send the 'test' REST message to the main process, which isn't availble for 
+      // about the first 20 seconds after application start-up
       function sendTestMsg() {
         const startTime = process.hrtime();
         const Http = new XMLHttpRequest();
@@ -34,7 +38,7 @@
         }
       }
 
-      // sendTestMsg();
+      sendTestMsg();  // will result in about 20 second elapsed time
 
     </script>
   </body>
