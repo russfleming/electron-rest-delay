@@ -1,4 +1,5 @@
-# Example of initial delay of main task REST server (using electron-quick-start as basis for this project)
+# Example of initial delay of main task REST server 
+**(using electron-quick-start as basis for this project)**
 
 This is a small example that started with the electron-quick-start project.  It demonstrates starting an Express REST server in the main process that responds to a 'test' message that the renderer process calls.
 
