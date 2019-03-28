@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Hello World!</title>
+  </head>
+  <body>
+    <h1>Hello World!</h1>
+    <!-- All of the Node.js APIs are available in this renderer process. -->
+    We are using Node.js <script>document.write(process.versions.node)</script>,
+    Chromium <script>document.write(process.versions.chrome)</script>,
+    and Electron <script>document.write(process.versions.electron)</script>.
+
+    <br><br><br>
+    <button onclick="sendTestMsg()">Send REST message</button>
+
+    <script>
+      // You can also require other files to run in this process
+      require('./renderer.js')
+
+      function sendTestMsg() {
+        const startTime = process.hrtime();
+        const Http = new XMLHttpRequest();
+        const url = 'http://localhost:8088/test';
+        Http.open("GET", url);
+        console.log("About to send REST test message");
+        Http.send();
+        Http.onreadystatechange = (e) => {
+          if (Http.readyState == 4 && Http.status == 200) {
+            const endTime = process.hrtime(startTime);
+            const elapsed = "" + endTime[0] + "." + Math.trunc(endTime[1] / 1000000);
+            console.log("Elapsed time: " + elapsed + " " + Http.responseText)
+          }
+        }
+      }
+
+      // sendTestMsg();
+
+    </script>
+  </body>
+</html>
